@@ -1,0 +1,54 @@
+create database product;
+use product;
+create table ghtable(
+id int,
+product_name varchar(200),
+quantity varchar(100),
+price int,
+region varchar(70)
+);
+
+select * from ghtable;
+insert into ghtable(Id,Product_name,quantity,price,region)
+values(1,"Laptop",2,1500,"North"),
+      (2,"Laptop",3,1500,"South"),
+      (3,"Phone",5,800,"North"),
+      (4,"Tablet",7,400,"West"),
+	  (5,"Phone",6,800,"East"),
+	  (6,"Laptop",4,1500,"East"),
+      (7,"Tablet:",3,400,"North"),
+      (8,"Phone",8,800,"South"),
+      (9,"Laptop",5,1500,"West"),
+	  (10,"Phone",2,800,"West");
+      
+      select * from ghtable;
+ 
+###1.Find the total quantity sold for each product.###
+select product_name, sum(quantity) as "total quantity sold" from ghtable group by product_name;
+
+###2.Find the average_price for each product.###
+SELECT product_name, AVG(price) AS average_price FROM ghtable GROUP BY product_name;
+
+###3.Get total number of sales(sale_id count) for each region.###
+SELECT region, COUNT(id) AS total_sales FROM ghtable GROUP BY region;
+
+###.4Find the total quantity sold for each region.###
+select region, sum(quantity) as total_sales from ghtable group by region;
+
+###5.Find the region where more than 10 items have been sold using HAVING CLAUSE.###
+select region, sum(quantity) as taotal_sales from ghtable group by region having sum(quantity) >10;
+
+###6.Find total sales amount for each product.###
+SELECT product_name, SUM(quantity * price) AS total_sales FROM ghtable GROUP BY product_name;
+
+###7.Find the regions where total sales amount exceeds 5000.###
+select Region from ghtable group by Region having sum(2000) > 5000;
+
+###8.Find average quantity sold for each product & only show products with an average quantity greater than 4.###
+select product_name, avg(quantity) as "average quantity sold" from ghtable group by product_name having avg(quantity)>4;
+  
+###9.Get the number of different product sold in each region.###
+select region, count(DISTINCT  1) AS numberofproduct from ghtable group by region;
+
+###10.Find the product with highest total sales amount.###
+select product_name, sum(price*quantity) as total_sales_amount from ghtable group by product_name order by sum(price*quantity) desc limit 1;

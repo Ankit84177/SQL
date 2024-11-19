@@ -1,0 +1,271 @@
+create database Company1;
+use Company1;
+
+
+
+
+drop database company;
+create table student(
+id int,
+Name varchar(50),
+age int,
+phone_no varchar(20)
+);
+
+select * from student;
+insert into student(id,Name,age,phone)
+value(1,"Ankit",23,8417049562);
+insert into student(id,Name,age,phone)
+value(2,"Aman",22,9775683128);
+insert into student(id,Name,age,phone)
+value(3,"Abhishek",21,98076544567);
+insert into student(id,Name,age,phone)
+value(4,"Harsh",22,9000076587);
+insert into student(id,Name,age,phone)
+value(5,"Suman",24,7222343276);
+insert into student(id,Name,age,phone)
+value(6,"Sumit",26,9896568776);
+insert into student(id,Name,age,phone)
+value(7,"Udit",24,964321876);
+insert into student(id,Name,age,phone)
+value(8,"Vijay",25,6256788896);
+insert into student(id,Name,age,phone)
+value(9,"Neema jha",28,8880856438);
+insert into student(id,Name,age,phone)
+value(10,"Manpreet",29,9554562482);
+
+insert into student(id,Name,age,phone)
+value(11,"Soniya",28,6784523876),
+	 (12,"Ruhi",30,9873422345),
+     (13,"Rakhi",25,1234567890);
+
+select * from student;
+
+alter table student
+add Email varchar(20);
+alter table student
+modify Email varchar(20)after age;
+alter table student
+modify Email int;
+alter table student
+add unique (Email);
+alter table student
+change Email Email_ID int;
+alter table student
+drop column Email_ID;
+alter table student
+rename student1;
+
+select * from student1;
+create database Myslef;
+use Myslef;
+create table personal(
+id int not null unique,
+name varchar(50) not null,
+age int not null check (age >= 18),
+gender varchar(4) not null,
+phone varchar(10) not null unique,
+city varchar(15) not null default'agra');
+
+select * from personal;
+
+
+insert into personal(id,Name,age,gender,phone,city)
+value(1,"Soniya",28,"F",6784523876,"Delhi"),
+	 (2,"Ruhi",30,"F",9873422345,"Agra"),
+     (3,"Rakhi",25,"F",1234567890,"Agra"),
+     (4,"Ankit",23,"M",8417049562,"Deoria"),
+     (5,"Aman",24,"M",888564522,"Kanpur");
+     
+select name from personal;
+
+select id as emp_id,name as emp_name from personal;
+
+select * from personal where gender = "M";
+select * from personal where gender = "F";
+select * from personal where age =21;
+select * from personal where age <21;
+select * from personal where age >21;
+select * from personal where city = "Agra";
+select * from personal where city !="Agra";
+select * from personal where age>18 and age <21;
+select * from personal where age >18 and age <21;
+select name from personal where city="Bhopal" or city="Agra";
+select name from personal where not (city="Bhopal" or city="Agra");
+select name from personal where city!="Bhopal" and city!="Agra";
+select name from personal where gender="M" AND (city="Bopal" OR city="Agra");
+select name from personal where AGE IN (18,21);
+select name from personal where AGE=18 or age=19 or age=21;
+select * from personal where not (city in("Bhopal","Delhi"));
+update personal
+set phone=4022157 where id =1;
+select * from personal;
+update personal
+set age=age+1 where id =1;
+select * from personal;
+set sql_safe_updates=0;
+update personal
+set age=19;
+update personal
+set age=18 where id in(2,3,5);
+
+select * from personal where age between 18 and 21;
+select * from personal where id between 2 and 5;
+select * from personal where name between "a" and "k";
+
+delete from personal where id=1;
+set sql_safe_updates=0;
+delete from personal where age>20;
+select * from personal;
+
+truncate table personal;
+
+drop table personal;
+
+select * from personal where name like "s%";
+select * from personal where name like "%r";
+select * from personal where name like "%am%";
+select *from personal where phone like "%21";
+select *from personal where phone like "_a%";
+select *from personal where phone like "_n%";
+select *from personal where name REGEXP 'ra';
+select *from personal where name REGEXP '^ra';
+select *from personal where name REGEXP 'an$';
+select *from personal where name REGEXP 'ram|kapoor|khan';
+select *from personal where name REGEXP '^ram|kapoor|^khan';
+select *from personal where name REGEXP '^ram|kapoor|khan$';
+select *from personal where name REGEXP '[is]';
+select *from personal where name REGEXP '[rm]';
+select *from personal where name REGEXP '[rm]a';
+select *from personal where name REGEXP '[rmh]a';
+select *from personal where name REGEXP 'r[am]';
+
+select * from personal order by name;
+select * from personal order by name asc;
+select * from personal order by name desc;
+select * from personal order by name, city;
+select * from personal where city = "Agra" order by name desc;
+select * from personal where city = "Agra" order by name asc;
+select city from personal;
+select distinct city from personal;
+select distinct age from personal;
+select * from personal order by age desc;
+select * from personal order by age asc;
+select distinct age from personal order by age desc;
+select distinct age from personal order by age asc;
+select distinct age from personal where age >19 order by age desc;
+select distinct age from personal where age >19 order by age asc;
+select * from personal limit 5;
+select * from personal where city = 'agra';
+select * from personal where city ='agra' limit 1;
+select name, city from personal where city ='agra' order by name limit 2;
+select * from personal limit 2,2;
+select * from personal limit 3,2;
+select * from personal limit 0,2;
+select * from personal limit 5,3;
+
+
+select *from personal;
+AGGREGATE FUNCTION
+select count(*) from personal;
+select count(name) from personal;
+select count(city) from personal;
+select distinct count(city) from personal;
+select count(distinct city) from personal;
+select max(age) from personal;
+select max(age) as maximum_age from personal;
+select min(age) from personal;
+select min(age) as maximum_age from personal;
+select avg(age) as average_age from personal;
+select avg(age) from personal;
+select sum(age) as sum_age from personal;
+select sum(age) from personal;
+select 5+6;
+select 5*6 as total;
+select 15/3;
+select 15%3;
+select 16%3;
+select id, name, age+5 as "new_age" from personal;
+select pi();
+select round(pi(),2);
+select round(4.3);
+select round(4.7);
+select round(4.5);
+select ceil(4.5);
+select ceil(4.6);
+select ceil(4.0);
+select ceil(4.1);
+select ceil(4.01);
+select floor(4.1);
+select floor(4.3);
+select floor(4.01);
+select floor(4.1);
+select floor(4.04);
+select floor(4.06);
+select pow(4,3);
+select sqrt(64);
+select sqrt(5);
+select sqrt(5),round(sqrt(5),2);
+select sqrt(6),round(sqrt(3),4);
+select sqrt(19),round(sqrt(12),9);
+select sqrt(69),round(sqrt(4.2),8);
+select abs(-2.25);
+select abs(2.25);
+select abs(12.0659);
+select abs(0.23456);
+select sign(-25);
+select sign(25);
+select sign(0);
+select sign(5);
+select rand();
+select rand()*100;
+select rand(5)*100;
+select rand(5);
+select rand(-3);
+select rand(-69)*10;
+select rand(26*8);
+select rand(39/2);
+
+
+select id, upper(name), age from personal;
+select id, ucase(name), age from personal;
+select id, lower(name), age from personal;
+select id, lcase(name), age from personal;
+select id,name, character_length(name) as characters from personal;
+select id,name, char_length(name) as characters from personal;
+select id,name, length(name) as characters from personal;
+select id, concat(name,age) as name from personal;
+select id, concat(name,city) as name from personal;
+select id, concat(name," ",age) as name from personal;
+select id, concat(name,"-",age) as name from personal;
+select id, concat(name,"Ankit",age) as name from personal;
+select id, concat(name,"-ankit-",age) as name from personal;
+select id, concat(name,age) as ankit from personal;
+select  concat("ankit-kumar")  from personal;
+select id, ltrim(name) as ltrim from personal;
+select id, ltrim(age) as ltrim from personal;
+select id, concat("Ankit"," ","kumar") as name from personal;
+select id, concat_ws("-","Ankit","kumar") as name from personal;
+select id, concat("!","Ankit","kumar","Hello") as name from personal;
+select id, concat("Ankit","-","kumar","Hello","Class") as name from personal;
+select "     Ankit kumar      " As name;
+select ltrim("     Ankit kumar     ") As name; 
+select rtrim("   Ankit kumar   ") As name;
+select trim("     Ankit kumar     ") As name;
+select position("World" in "Hello world") as position_no;
+select position("o" in "Hello world") as position_no;
+select position("l" in "Hello world") as position_no;
+select instr("Hello World","el") as position_no;
+select instr("Hello world","ell") as position_no;
+select locate("Hello World","ell") as position_no;
+select locate("l","Hello World",1) as position_no;
+select locate("r","Hello World",5) as position_no;
+
+
+  
+
+
+
+
+
+
